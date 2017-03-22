@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
+ -->
+<mapper namespace="boma.dao.CompanyDao">
+    <resultMap id="ResultMap" type="company" >
+	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="desc" property="desc" jdbcType="VARCHAR" />
+	    <result column="company_leaders_id" property="company_leaders_id" jdbcType="INTEGER" />
+	  	<association property="leader" column="company_leaders_id" 
+	  				 javaType="companyLeader" 
+	  				 select="boma.dao.CompanyLeaderDao.getLeaderById" />
+	</resultMap>
+    <select id="selectOneCompany" resultType="company" parameterType="int">
+    	select * from companies where id=#{id}
+    </select>
+    
+    <select id="getList" resultMap="ResultMap" parameterType="Map">
+    	select * from companies 
+    	<where>
+    		<if test="id!=&quot;&quot; and id!=&quot;0&quot;">
+    			id=#{id}
+    		</if>
+    	</where>
+    </select>
+    
+    <insert id="create" parameterType="company" keyProperty="id" useGeneratedKeys="true">
+    	insert into companies (id,name,`desc`,company_leaders_id) values(#{id},#{name},#{desc},#{company_leaders_id})
+    </insert>
+    <insert id="delete" parameterType="Integer">
+    	delete from companies where id=#{id}
+    </insert>
+    
+</mapper>
