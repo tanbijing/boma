@@ -5,12 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<title>company index</title>
+<title>Login</title>
 </head>
 <body>
-<%@include file="./commons/_position.jsp" %>
-<%@include file="./commons/_tool.jsp" %>
-<%@include file="./commons/_list.jsp" %>
-<%@include file="./commons/_footer.jsp" %>
+	<form action="login/in" method="post">
+		<input type="submit" value="提交"/>
+	</form>
 </body>
 </html>

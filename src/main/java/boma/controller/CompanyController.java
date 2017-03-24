@@ -2,11 +2,8 @@ package boma.controller;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,35 +15,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import boma.dao.CompanyDao;
-import boma.dao.CompanyLeaderDao;
 import boma.model.Company;
-import boma.model.CompanyLeader;
+import boma.service.CompanyService;
 
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
 	@Autowired
-	private CompanyDao dao;
-	@Autowired
-	private CompanyLeaderDao leaderDao;
+	private CompanyService companyService;
 	
 	@RequestMapping("")
 	public ModelAndView companyIndex(){
-		Map<String,String> condition = new HashMap<String, String>();
-		condition.put("id", "0");
-		List<Company> companies = dao.getList(condition);
-		Logger log = Logger.getLogger(this.getClass());
-		log.debug(companies);
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("companies", companies);
+		map.put("companies", companyService.searchCompany(null));
 		map.put("position","企业列表");
 		return new ModelAndView("company/index",map);
 	}
 	@RequestMapping(value="/{id}", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String getCompanyById(@PathVariable("id") Integer id){
-		Company com = dao.selectOneCompany(id);
+		Company com = companyService.searchOneCompany(id);
 		Map<String,Company> map = new HashMap<String,Company>();
 		map.put("company", com);
 		JSONObject j = new JSONObject();
@@ -59,25 +47,39 @@ public class CompanyController {
 		map.put("position","添加企业");
 		return new ModelAndView("company/new",map);
 	}
+	/**
+	 * 企业名称
+	 * @param name
+	 * 
+	 * 企业负责人名
+	 * @param leader_name
+	 * 
+	 * 企业简介
+	 * @param desc
+	 * 
+	 * 企业logo图片
+	 * @param multipartFile
+	 * 
+	 */
 	@RequestMapping("/create")
 	public String create(@RequestParam(value="name") String name,
 						 @RequestParam(value="leader") String leader_name,
 						 @RequestParam(value="desc") String desc,
 						 @RequestParam(value="logo") MultipartFile multipartFile){
-		CompanyLeader leader = new CompanyLeader();
-		leader.setName(leader_name);
-		leaderDao.create(leader);
-		Company com = new Company();
-		com.setName(name);
-		com.setDesc(desc);
-		com.setCompany_leaders_id(leader.getId());
-		dao.create(com);
+		//构建企业数据
+		HashMap<String, String> map = new HashMap<>();
+		map.put("leader_name", leader_name);
+		map.put("name", name);
+		map.put("desc", desc);
+		//创建企业
+		companyService.createCompany(map);
+		//重定向到列表页
 		return "redirect:/company";
 	}
 	@RequestMapping(path="/{id}",method=RequestMethod.POST)
 	@ResponseBody
 	public String delete(@PathVariable("id") Integer id){
-		dao.delete(id);
+		companyService.deleteCompany(id);
 		return id.toString();
 	}
 }

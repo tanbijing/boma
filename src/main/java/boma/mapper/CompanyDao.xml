@@ -20,7 +20,7 @@
     <select id="getList" resultMap="ResultMap" parameterType="Map">
     	select * from companies 
     	<where>
-    		<if test="id!=&quot;&quot; and id!=&quot;0&quot;">
+    		<if test="id!=&quot;&quot; and id!=&quot;0&quot; and id!=null">
     			id=#{id}
     		</if>
     	</where>

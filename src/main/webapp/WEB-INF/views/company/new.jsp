@@ -7,7 +7,7 @@
 <title>company show</title>
 </head>
 <body>
-	<%@include file="_position.jsp" %>
-	<%@include file="_form.jsp" %>
+	<%@include file="./commons/_position.jsp" %>
+	<%@include file="./commons/_form.jsp" %>
 </body>
 </html>
