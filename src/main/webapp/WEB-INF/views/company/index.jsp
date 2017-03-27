@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@include file="../layouts/_bootstrap_css.jsp" %>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <title>company index</title>
 </head>
@@ -11,6 +12,6 @@
 <%@include file="./commons/_position.jsp" %>
 <%@include file="./commons/_tool.jsp" %>
 <%@include file="./commons/_list.jsp" %>
-<%@include file="./commons/_footer.jsp" %>
+<%@include file="/WEB-INF/views/layouts/_footer.jsp" %>
 </body>
 </html>

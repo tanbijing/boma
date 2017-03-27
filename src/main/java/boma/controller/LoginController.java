@@ -21,10 +21,12 @@ public class LoginController {
 	 */
 	@RequestMapping("")
 	public ModelAndView index(HttpSession session){
+		//TODO
 		return new ModelAndView("login/login");
 	}
 	@RequestMapping(value="/in",method=RequestMethod.POST)
 	public String login(HttpSession session,@RequestParam(value="name",required=false) String name,@RequestParam(value="pwd",required=false) String pwd){
+		//TODO
 		session.setAttribute("user", "tom");
 		//÷ÿ∂®œÚ  
         return "redirect:/company";

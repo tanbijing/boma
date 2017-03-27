@@ -26,16 +26,19 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		if(request.getRequestURI().indexOf("login")>=0){
 	        return true;
-        }  
+        }
 		HttpSession session = request.getSession(false);
 		String user = (String)WebUtils.getSessionAttribute(request, "user");
 		if (user!=null){
 			System.out.println("===============前================="+session.getId()+session.getAttribute("user"));
 			return true;
 		}
-		//不符合条件的，跳转到登录界面  
-        request.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(request, response);
-		return false;
+		//不符合条件的，转发到登录界面  
+		//request.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(request, response);
+        //4、非法请求 即这些请求需要登录后才能访问  
+        //重定向到登录页面  
+        response.sendRedirect(request.getContextPath() + "/login");
+        return false;
 	}
 
 	/* (non-Javadoc)
