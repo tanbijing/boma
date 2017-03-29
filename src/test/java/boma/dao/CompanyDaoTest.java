@@ -5,17 +5,20 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import boma.service.CompanyService;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring.xml")
+@ContextConfiguration({"classpath:spring-dao.xml","classpath:spring-service.xml"})
 public class CompanyDaoTest {
 	@Resource
-	private CompanyDao dao;
+	private CompanyService service;
 	@Test
 	public void testSelectOneCompany() {
-		System.out.println(dao.selectOneCompany(23));
+		System.out.println(service.searchOneCompany(23));
 	}
 
 }
