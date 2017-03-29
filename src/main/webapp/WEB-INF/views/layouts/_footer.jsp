@@ -2,7 +2,7 @@
     pageEncoding="utf-8"%>
 <div class="panel panel-default text-center">
    	<div class="panel-heading">
-		技术支持：杭州君强科技有限公司
+		技术支持：tompiking
 	</div>
 </div>
 <script src="js/bootstrap.min.js"></script>

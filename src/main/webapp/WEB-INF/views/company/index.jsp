@@ -9,9 +9,20 @@
 <title>company index</title>
 </head>
 <body>
-<%@include file="./commons/_position.jsp" %>
-<%@include file="./commons/_tool.jsp" %>
-<%@include file="./commons/_list.jsp" %>
-<%@include file="/WEB-INF/views/layouts/_footer.jsp" %>
+	<div class="container">
+		<div class="panel panel-default text-center">
+			<div class="panel-body">
+				<%@include file="/WEB-INF/views/layouts/_top.jsp" %>
+			</div>
+		</div>
+		<div class="panel panel-default ">
+			<div class="panel-heading">
+				<%@include file="./commons/_tool.jsp" %>
+				<%@include file="./commons/_position.jsp" %>
+			</div>
+			<%@include file="./commons/_list.jsp" %>
+		</div>
+		<%@include file="/WEB-INF/views/layouts/_footer.jsp" %>
+	</div>
 </body>
 </html>

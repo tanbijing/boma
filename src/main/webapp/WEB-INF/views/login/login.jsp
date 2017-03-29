@@ -11,6 +11,11 @@
 <body>
 	<div class="container">
 		<div class="panel panel-default text-center">
+			<div class="panel-body">
+				<%@include file="/WEB-INF/views/layouts/_top.jsp" %>
+			</div>
+		</div>
+		<div class="panel panel-default text-center">
 	    	<div class="panel-heading">
 	    		<h2>登录</h2>
 	    	</div>
@@ -25,12 +30,12 @@
 							<span class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</span>
 							<input type="password" name="pwd" class="form-control"/>
 						</div><br/>
-						<input type="submit" value="提交" class="btn btn-primary btn-lg btn-block"/>
+						<input type="submit" value="登录" class="btn btn-primary btn-lg btn-block"/>
 					</form>
 				</div>
 			</div>
 	   	</div>
+	   	<%@include file="/WEB-INF/views/layouts/_footer.jsp" %>
 	</div>
-	<%@include file="/WEB-INF/views/layouts/_footer.jsp" %>
 </body>
 </html>
