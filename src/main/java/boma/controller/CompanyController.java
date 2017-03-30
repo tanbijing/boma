@@ -62,7 +62,8 @@ public class CompanyController {
 	 * 
 	 */
 	@RequestMapping("/create")
-	public String create(@RequestParam(value="name") String name,
+	public String create(@RequestParam(value="id") String id,
+						 @RequestParam(value="name") String name,
 						 @RequestParam(value="leader") String leader_name,
 						 @RequestParam(value="desc") String desc,
 						 @RequestParam(value="logo") MultipartFile multipartFile){
@@ -71,6 +72,7 @@ public class CompanyController {
 		map.put("leader_name", leader_name);
 		map.put("name", name);
 		map.put("desc", desc);
+		map.put("id", id);
 		//创建企业
 		companyService.createCompany(map);
 		//重定向到列表页
@@ -81,5 +83,31 @@ public class CompanyController {
 	public String delete(@PathVariable("id") Integer id){
 		companyService.deleteCompany(id);
 		return id.toString();
+	}
+	@RequestMapping("/{id}/edit")
+	public ModelAndView editCompany(@PathVariable("id") Integer id){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("position","修改企业");
+		Company com = companyService.searchOneCompany(id);
+		map.put("company", com);
+		return new ModelAndView("company/edit",map);
+	}
+	@RequestMapping("/{id}/create")
+	public String update(@RequestParam(value="id") String id,
+						 @RequestParam(value="name") String name,
+						 @RequestParam(value="leader") String leader_name,
+						 @RequestParam(value="desc") String desc,
+						 @RequestParam(value="logo") MultipartFile multipartFile){
+		//构建企业数据
+		HashMap<String, String> map = new HashMap<>();
+		map.put("leader_name", leader_name);
+		map.put("name", name);
+		map.put("desc", desc);
+		map.put("id", id);
+		//更新企业
+		Company company = companyService.updateCompany(map);
+		System.out.println("===================更新完成："+company);
+		//重定向到列表页
+		return "redirect:/company";
 	}
 }

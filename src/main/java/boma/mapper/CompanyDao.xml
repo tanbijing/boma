@@ -13,7 +13,7 @@
 	  				 javaType="companyLeader" 
 	  				 select="boma.dao.CompanyLeaderDao.getLeaderById" />
 	</resultMap>
-    <select id="selectOneCompany" resultType="company" parameterType="int">
+    <select id="selectOneCompany" resultMap="ResultMap" parameterType="int">
     	select * from companies where id=#{id}
     </select>
     

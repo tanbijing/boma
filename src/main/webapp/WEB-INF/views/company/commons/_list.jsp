@@ -23,7 +23,7 @@
 		    <td align="center">${company.leader.name }</td>
 		    <td align="center">${company.desc }</td>
 		    <td align="center">
-		    	<a href="">修改</a> | 
+		    	<a href="company/${company.id}/edit">修改</a> | 
 		    	<a href="company/${company.id}" class="a_delete">删除</a> | 
 		    	<a href="">查看</a> | 
 		    </td>

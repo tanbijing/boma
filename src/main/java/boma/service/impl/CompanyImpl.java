@@ -39,7 +39,7 @@ public class CompanyImpl implements CompanyService {
 	}
 
 	@Override
-	public Integer updateCompany(Integer index) {
+	public Company updateCompany(Map<String, String> companyMap) {
 		// TODO Auto-generated method stub
 		return null;
 	}
