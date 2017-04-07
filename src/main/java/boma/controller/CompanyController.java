@@ -1,6 +1,7 @@
 package boma.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mysql.cj.fabric.xmlrpc.base.Array;
 
 import boma.model.Company;
 import boma.service.CompanyService;

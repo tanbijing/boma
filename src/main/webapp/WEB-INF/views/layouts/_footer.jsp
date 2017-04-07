@@ -5,4 +5,4 @@
 		技术支持：tompiking
 	</div>
 </div>
-<script src="js/bootstrap.min.js"></script>
+<script src="<%= request.getAttribute("basePath")%>js/bootstrap.min.js"></script>
